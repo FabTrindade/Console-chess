@@ -1,5 +1,7 @@
 ﻿using System;
 
+using chessboard;
+
 namespace Console_chess
 {
     internal class Program
