@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace chessboard
 {
-    internal class Position
+    class Position
     {
         public int row { get; set; }
         public int col { get; set; }
