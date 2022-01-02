@@ -9,6 +9,10 @@ namespace Console_chess
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            Chessboard tab = new Chessboard(8, 8);
+
+            Screen.pritChessbord(tab);
         }
     }
 }

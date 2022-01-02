@@ -16,5 +16,10 @@ namespace chessboard
             this.columns = columns;
             this.pieces = new Piece [rows, columns];
         }
+
+        public Piece piece (int row, int col)
+        {
+            return pieces[row, col];
+        }
     }
 }
