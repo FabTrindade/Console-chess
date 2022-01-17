@@ -5,7 +5,7 @@ namespace Console_chess
 {
     class Screen
     {
-        public static void pritChessbord(Chessboard chess)
+        public static void printChessbord(Chessboard chess)
         {
             for (int i = 0; i <  chess.rows; i++)
             {
