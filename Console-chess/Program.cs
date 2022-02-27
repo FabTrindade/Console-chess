@@ -9,20 +9,10 @@ namespace Console_chess
     {
         static void Main(string[] args)
         {
-            try
-            {
-                Chessboard tab = new Chessboard(8, 8);
+            ChessbordPosition pos = new ChessbordPosition('a', 1);
 
-                tab.putPiece(new Tower(tab, Color.Black), new Position(0, 0));
-                tab.putPiece(new Tower(tab, Color.Black), new Position(1, 3));
-                tab.putPiece(new King(tab, Color.Black), new Position(2, 4));
-
-                Screen.printChessbord(tab);
-            }
-            catch (ChessboradExceptions e)
-            {
-                Console.WriteLine(e);
-            }
+            Console.WriteLine(pos);
+            Console.WriteLine(pos.toPosition());
         }
     }
 }
