@@ -13,16 +13,7 @@ namespace Console_chess
                 Console.Write(8 - i + "  ");
                 for (int j = 0; j < chess.columns; j++)
                 {
-                    if (chess.piece(i,j) == null)
-                    {
-                        Console.Write("- ");
-                    }
-                    else
-                    {
-                        printPiece(chess.piece(i, j));
-                        Console.Write(" ");
-                    }
-                    
+                   printPiece(chess.piece(i, j));                    
                 }
                 Console.WriteLine();
             }
@@ -36,6 +27,35 @@ namespace Console_chess
                 Console.Write(Convert.ToChar(newCol) + " ");
             }
         }
+        public static void printChessbord(Chessboard chess, bool[,] possibleMovements)
+        {
+            ConsoleColor originalBackground = Console.BackgroundColor;
+            ConsoleColor chandedBackground = ConsoleColor.DarkGray;
+
+
+            for (int i = 0; i <  chess.rows; i++)
+            {
+                Console.Write(8 - i + "  ");
+                for (int j = 0; j < chess.columns; j++)
+                {
+                    Console.BackgroundColor = (possibleMovements[i, j]) ? chandedBackground : originalBackground;
+                    printPiece(chess.piece(i, j));                    
+                }
+                Console.WriteLine();
+                Console.BackgroundColor = originalBackground;
+            }
+
+            Console.Write("   ");
+
+
+            for (int i =0; i < chess.columns; i++)
+            {
+                int newCol = 'a'+i;
+                Console.Write(Convert.ToChar(newCol) + " ");
+            }
+            Console.BackgroundColor =  originalBackground;
+        }
+
 
         public static ChessbordPosition ReadChessPosition()
         {
@@ -46,19 +66,27 @@ namespace Console_chess
         }
         public static void printPiece (Piece piece)
         {
-            if (piece.color == Color.White)
+            if (piece == null)
             {
-                Console.Write(piece);
+                Console.Write("- ");
             }
             else
             {
-                ConsoleColor aux = Console.ForegroundColor;
+                if (piece.color == Color.White)
+                {
+                    Console.Write(piece);
+                }
+                else
+                {
+                    ConsoleColor aux = Console.ForegroundColor;
 
-                Console.ForegroundColor = ConsoleColor.Yellow;
+                    Console.ForegroundColor = ConsoleColor.Yellow;
 
-                Console.Write(piece);
+                    Console.Write(piece);
 
-                Console.ForegroundColor = aux;
+                    Console.ForegroundColor = aux;
+                }
+                Console.Write(" ");
             }
         }
     }

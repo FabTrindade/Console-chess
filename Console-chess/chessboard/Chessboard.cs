@@ -66,6 +66,17 @@ namespace chessboard
             return true;
         }
 
+        public bool canMove(Position pos, Color color)
+        {
+            if (!this.validPos(pos))
+            {
+                return false;
+            }
+            Piece p = this.piece(pos);
+
+            return (p == null) || (p.color != color);
+        }
+
         public void positionValidate (Position pos)
         {
             if (!validPos(pos))

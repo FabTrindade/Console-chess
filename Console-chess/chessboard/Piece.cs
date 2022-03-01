@@ -3,7 +3,7 @@ using chessboard;
 
 namespace chessboard
 {
-    class Piece
+    abstract class Piece
     {
         public  Position position { get; set; }
         public Color color { get; protected set;}
@@ -12,7 +12,7 @@ namespace chessboard
 
         public Chessboard chessboard { get; protected set; }
 
-        public Piece(Chessboard chesboard, Color color)
+        public Piece(Chessboard chessboard, Color color)
         {
             this.position = null;
             this.color = color;
@@ -24,5 +24,7 @@ namespace chessboard
         {
             movemmentsAmount++;
         }
+
+        public abstract bool[,] possibleMovements();
     }
 }
