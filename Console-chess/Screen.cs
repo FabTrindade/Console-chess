@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using chess;
 using chessboard;
 
@@ -26,6 +27,43 @@ namespace Console_chess
                 int newCol = 'a'+i;
                 Console.Write(Convert.ToChar(newCol) + " ");
             }
+        }
+
+        public static void printGame (ChessGame game)
+        {
+            printChessbord(game.chess);
+            printCapturedPieces(game);
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Turno: " + game.shift);
+            Console.WriteLine("Waiting player: " + game.currentPlayer);
+        }
+
+        public static void printCapturedPieces(ChessGame game)
+        {
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("---------------");
+            Console.WriteLine("Captured pieces");
+            Console.WriteLine("---------------");
+            Console.Write("White: ");
+            printPiecesSet(game.capturedPieces(Color.White));
+            Console.Write("Black: ");
+            ConsoleColor temp = Console.ForegroundColor;
+            Console.ForegroundColor = ConsoleColor.Yellow;
+            printPiecesSet(game.capturedPieces(Color.Black));
+            Console.ForegroundColor = temp;
+            Console.WriteLine("---------------");
+        }
+
+        public static void printPiecesSet(HashSet<Piece> set)
+        {
+            Console.Write("[");
+            foreach(Piece x in set)
+            {
+                Console.Write(x + " ");
+            }
+            Console.WriteLine("]");
         }
         public static void printChessbord(Chessboard chess, bool[,] possibleMovements)
         {

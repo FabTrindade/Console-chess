@@ -18,13 +18,8 @@ namespace Console_chess
                     try
                     {
                         Console.Clear();
-                        Screen.printChessbord(game.chess);
 
-                        Console.WriteLine();
-                        Console.WriteLine();
-                        Console.WriteLine("Turno: " + game.shift);
-                        Console.WriteLine("Waiting player: " + game.currentPlayer);
-
+                        Screen.printGame(game);
 
 
                         Console.WriteLine();
