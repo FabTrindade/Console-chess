@@ -25,6 +25,27 @@ namespace chessboard
             movemmentsAmount++;
         }
 
+        public bool hasPossibleMovement()
+        {
+            bool[,] mat = possibleMovements();
+            for (int i = 0; i < chessboard.rows; i++)
+            {
+                for (int j = 0; j < chessboard.columns; j++)
+                {
+                    if (mat[i,j])
+                    {
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool canMoveTo(Position pos)
+        {
+            return possibleMovements()[pos.row, pos.col];
+        }
+
         public abstract bool[,] possibleMovements();
     }
 }
