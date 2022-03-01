@@ -19,5 +19,10 @@ namespace chessboard
             this.movemmentsAmount = 0;
             this.chessboard = chessboard;
         }
+
+        public void incMovementsAmout()
+        {
+            movemmentsAmount++;
+        }
     }
 }

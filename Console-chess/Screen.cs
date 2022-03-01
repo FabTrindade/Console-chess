@@ -1,4 +1,5 @@
 ﻿using System;
+using chess;
 using chessboard;
 
 namespace Console_chess
@@ -36,6 +37,13 @@ namespace Console_chess
             }
         }
 
+        public static ChessbordPosition ReadChessPosition()
+        {
+            string s = Console.ReadLine();
+            char col = s[0];
+            int row = int.Parse(s[1]+"");
+            return new ChessbordPosition(col, row);
+        }
         public static void printPiece (Piece piece)
         {
             if (piece.color == Color.White)

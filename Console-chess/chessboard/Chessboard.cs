@@ -1,5 +1,4 @@
-﻿
-using chessboard;
+﻿using System;
 
 namespace chessboard
 {
@@ -33,6 +32,19 @@ namespace chessboard
             positionValidate(pos);
 
             return piece(pos) != null;
+        }
+
+        public Piece removePiece(Position pos)
+        {
+            if (piece(pos) == null)
+            {
+                return null;
+            }
+
+            Piece aux = piece(pos);
+            aux.position = null;
+            pieces[pos.row, pos.col] = null;
+            return aux;
         }
 
         public void putPiece(Piece p, Position pos)
