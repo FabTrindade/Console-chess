@@ -25,6 +25,10 @@ namespace chessboard
             movemmentsAmount++;
         }
 
+        public void decMovementsAmout()
+        {
+            movemmentsAmount--;
+        }
         public bool hasPossibleMovement()
         {
             bool[,] mat = possibleMovements();
