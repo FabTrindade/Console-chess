@@ -103,7 +103,7 @@ namespace chess
 
         public void destinationPositionValidate(Position origin, Position destination)
         {
-            if (!chess.piece(origin).canMoveTo(destination))
+            if (!chess.piece(origin).possibleMovement(destination))
             {
                 throw new ChessboradExceptions("Invalid distination position!");
             }
