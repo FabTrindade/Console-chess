@@ -49,6 +49,8 @@ namespace Console_chess
                         Console.WriteLine(e.Message);
                         Console.ReadLine();
                     }
+                    Console.Clear();
+                    Screen.printGame(game);
                 }
             }
             catch (ChessboradExceptions e)

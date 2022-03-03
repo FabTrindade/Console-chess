@@ -68,8 +68,15 @@ namespace chess
 
             check = (isKingInCheck(adversaryColor(currentPlayer)));
 
-            shift++;
-            changePlayer();
+            if (isKingInCheckmate(adversaryColor(currentPlayer)))
+            {
+                finished = true;
+            }
+            else
+            {
+                shift++;
+                changePlayer();
+            }
         }
 
         private void changePlayer()
@@ -168,6 +175,39 @@ namespace chess
                 }
             }
             return false;
+        }
+
+        public bool isKingInCheckmate(Color color)
+        {
+            if (!isKingInCheck(color))
+            {
+                return false;
+            }
+            foreach ( Piece x in inGamePieces(color))
+            {
+                bool[,] mat = x.possibleMovements();
+                for (int i = 0; i < chess.rows; i++)
+                {
+                    for (int j = 0; j < chess.columns; j++)
+                    {
+                        if (mat[i, j])
+                        {
+                            Position origin = x.position;
+                            Position destination = new Position(i, j);
+                            Piece capturedPiece = executeMovement(origin, destination);
+                            bool testChek = isKingInCheck(color);
+
+                            undoMovement(origin, destination, capturedPiece);
+                            
+                            if (!testChek)
+                            {
+                                return false;
+                            }                           
+                        }
+                    }
+                }
+            }
+            return true;
         }
 
         public void putNewPiece (Piece piece, char col, int row)

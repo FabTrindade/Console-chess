@@ -36,10 +36,19 @@ namespace Console_chess
             Console.WriteLine();
             Console.WriteLine();
             Console.WriteLine("Turno: " + game.shift);
-            Console.WriteLine("Waiting player: " + game.currentPlayer);
-            if(game.check)
+
+            if (!game.finished)
             {
-                Console.WriteLine("YOU ARE IN CHECK!");
+                Console.WriteLine("Waiting player: " + game.currentPlayer);
+                if (game.check)
+                {
+                    Console.WriteLine("YOU ARE IN CHECK!");
+                }
+            }
+            else
+            {
+                Console.WriteLine("CHECKMATE!");
+                Console.WriteLine("Winer: " + game.currentPlayer);
             }
         }
 
