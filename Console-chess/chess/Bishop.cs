@@ -3,15 +3,15 @@ using chessboard;
 
 namespace chess
 {
-    class Tower : Piece
+    class Bishop : Piece
     {
-        public Tower(Chessboard chessboard, Color color) : base(chessboard, color)
+        public Bishop(Chessboard chessboard, Color color) : base(chessboard, color)
         {
         }
 
         public override string ToString()
         {
-            return "T";
+            return "B";
         }
 
        
@@ -21,57 +21,8 @@ namespace chess
 
             Position pos = new Position(0, 0);
 
-            //up
-            pos.definePosition(position.row - 1, position.col);
-            while (chessboard.canMove(pos, color))
-            {
-                mat[pos.row, pos.col] = true;
-                if ((chessboard.piece(pos) != null) && (chessboard.piece(pos).color != color))
-                {
-                    break;
-                }
-                pos.row--;
-            }
-
-            //down
-            pos.definePosition(position.row + 1, position.col);
-            while (chessboard.canMove(pos, color))
-            {
-                mat[pos.row, pos.col] = true;
-                if ((chessboard.piece(pos) != null) && (chessboard.piece(pos).color != color))
-                {
-                    break;
-                }
-                pos.row++;
-            }
-
-            //right
-            pos.definePosition(position.row, position.col + 1);
-            while (chessboard.canMove(pos, color))
-            {
-                mat[pos.row, pos.col] = true;
-                if ((chessboard.piece(pos) != null) && (chessboard.piece(pos).color != color))
-                {
-                    break;
-                }
-                pos.col++;
-            }
-
-
-            //left
-            pos.definePosition(position.row, position.col - 1);
-            while (chessboard.canMove(pos, color))
-            {
-                mat[pos.row, pos.col] = true;
-                if ((chessboard.piece(pos) != null) && (chessboard.piece(pos).color != color))
-                {
-                    break;
-                }
-                pos.col--;
-            }
-
             //NO
-            pos.definePosition(position.row - 1, position.col - 1);
+            pos.definePosition(position.row - 1, position.col -1);
             while (chessboard.canMove(pos, color))
             {
                 mat[pos.row, pos.col] = true;

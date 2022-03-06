@@ -19,8 +19,9 @@ namespace Console_chess
                 Console.WriteLine();
             }
 
-            Console.Write("   ");
 
+            Console.WriteLine();
+            Console.Write("   ");
 
             for (int i =0; i < chess.columns; i++)
             {

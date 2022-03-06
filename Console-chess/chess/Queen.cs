@@ -3,15 +3,15 @@ using chessboard;
 
 namespace chess
 {
-    class Tower : Piece
+    class Queen : Piece
     {
-        public Tower(Chessboard chessboard, Color color) : base(chessboard, color)
+        public Queen(Chessboard chessboard, Color color) : base(chessboard, color)
         {
         }
 
         public override string ToString()
         {
-            return "T";
+            return "Q";
         }
 
        
@@ -67,59 +67,6 @@ namespace chess
                 {
                     break;
                 }
-                pos.col--;
-            }
-
-            //NO
-            pos.definePosition(position.row - 1, position.col - 1);
-            while (chessboard.canMove(pos, color))
-            {
-                mat[pos.row, pos.col] = true;
-                if ((chessboard.piece(pos) != null) && (chessboard.piece(pos).color != color))
-                {
-                    break;
-                }
-                pos.row--;
-                pos.col--;
-            }
-
-            //NE
-            pos.definePosition(position.row - 1, position.col + 1);
-            while (chessboard.canMove(pos, color))
-            {
-                mat[pos.row, pos.col] = true;
-                if ((chessboard.piece(pos) != null) && (chessboard.piece(pos).color != color))
-                {
-                    break;
-                }
-                pos.row--;
-                pos.col++;
-            }
-
-            //SE
-            pos.definePosition(position.row + 1, position.col + 1);
-            while (chessboard.canMove(pos, color))
-            {
-                mat[pos.row, pos.col] = true;
-                if ((chessboard.piece(pos) != null) && (chessboard.piece(pos).color != color))
-                {
-                    break;
-                }
-                pos.row++;
-                pos.col++;
-            }
-
-
-            //SO
-            pos.definePosition(position.row + 1, position.col - 1);
-            while (chessboard.canMove(pos, color))
-            {
-                mat[pos.row, pos.col] = true;
-                if ((chessboard.piece(pos) != null) && (chessboard.piece(pos).color != color))
-                {
-                    break;
-                }
-                pos.row++;
                 pos.col--;
             }
             return mat;

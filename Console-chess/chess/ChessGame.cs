@@ -19,17 +19,17 @@ namespace chess
 
         public ChessGame()
         {
-            this.chess = new Chessboard(8,8);
+            this.chess = new Chessboard(8, 8);
             this.shift = 1;
             this.currentPlayer = Color.White;
             finished = false;
             piecesSet = new HashSet<Piece>();
             capturedSet = new HashSet<Piece>();
             check = false;
-            putPieces();            
-        } 
+            putPieces();
+        }
 
-        public Piece executeMovement (Position origin, Position destination)
+        public Piece executeMovement(Position origin, Position destination)
         {
             Piece p = chess.removePiece(origin);
             p.incMovementsAmout();
@@ -43,7 +43,7 @@ namespace chess
         }
 
 
-        public void undoMovement (Position origin, Position destination, Piece capturedPiece)
+        public void undoMovement(Position origin, Position destination, Piece capturedPiece)
         {
             Piece p = chess.removePiece(destination);
             p.decMovementsAmout();
@@ -58,8 +58,8 @@ namespace chess
 
         public void executePlay(Position origin, Position destination)
         {
-            Piece capturedPiece =  executeMovement(origin, destination);
-            
+            Piece capturedPiece = executeMovement(origin, destination);
+
             if (isKingInCheck(currentPlayer))
             {
                 undoMovement(origin, destination, capturedPiece);
@@ -90,7 +90,7 @@ namespace chess
             {
                 throw new ChessboradExceptions("There is not piece in chosen origin position!");
             }
-            if(currentPlayer != chess.piece(pos).color)
+            if (currentPlayer != chess.piece(pos).color)
             {
                 throw new ChessboradExceptions("The chosen origin piece is not yours!");
             }
@@ -109,11 +109,11 @@ namespace chess
             }
         }
 
-        public  HashSet<Piece> capturedPieces(Color color)
+        public HashSet<Piece> capturedPieces(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
-            
-            foreach(Piece x in capturedSet)
+
+            foreach (Piece x in capturedSet)
             {
                 if (x.color == color)
                 {
@@ -124,7 +124,7 @@ namespace chess
         }
 
 
-        public HashSet<Piece> inGamePieces(Color color) 
+        public HashSet<Piece> inGamePieces(Color color)
         {
             HashSet<Piece> aux = new HashSet<Piece>();
 
@@ -140,14 +140,14 @@ namespace chess
         }
 
 
-        private Color adversaryColor (Color color)
+        private Color adversaryColor(Color color)
         {
             return (color == Color.White) ? Color.Black : Color.White;
         }
 
-        private Piece hasKing (Color color)
+        private Piece hasKing(Color color)
         {
-            foreach(Piece x in inGamePieces(color))
+            foreach (Piece x in inGamePieces(color))
             {
                 if (x is King)
                 {
@@ -157,7 +157,7 @@ namespace chess
             return null;
         }
 
-        public bool isKingInCheck (Color color)
+        public bool isKingInCheck(Color color)
         {
             Piece k = hasKing(color);
 
@@ -183,7 +183,7 @@ namespace chess
             {
                 return false;
             }
-            foreach ( Piece x in inGamePieces(color))
+            foreach (Piece x in inGamePieces(color))
             {
                 bool[,] mat = x.possibleMovements();
                 for (int i = 0; i < chess.rows; i++)
@@ -198,11 +198,11 @@ namespace chess
                             bool testChek = isKingInCheck(color);
 
                             undoMovement(origin, destination, capturedPiece);
-                            
+
                             if (!testChek)
                             {
                                 return false;
-                            }                           
+                            }
                         }
                     }
                 }
@@ -210,7 +210,7 @@ namespace chess
             return true;
         }
 
-        public void putNewPiece (Piece piece, char col, int row)
+        public void putNewPiece(Piece piece, char col, int row)
         {
             chess.putPiece(piece, new ChessbordPosition(col, row).toPosition());
             piecesSet.Add(piece);
@@ -219,17 +219,40 @@ namespace chess
         private void putPieces()
         {
             putNewPiece(new Tower(chess, Color.White), 'a', 1);
+            putNewPiece(new Knight(chess, Color.White), 'b', 1);
+            putNewPiece(new Bishop(chess, Color.White), 'c', 1);
+            putNewPiece(new Queen(chess, Color.White), 'd', 1);
+            putNewPiece(new King(chess, Color.White), 'e', 1);
+            putNewPiece(new Bishop(chess, Color.White), 'f', 1);
+            putNewPiece(new Knight(chess, Color.White), 'g', 1);
             putNewPiece(new Tower(chess, Color.White), 'h', 1);
-            putNewPiece(new Tower(chess, Color.White), 'e', 2);
-            putNewPiece(new Tower(chess, Color.White), 'f', 2);
-            putNewPiece(new Tower(chess, Color.White), 'd', 2);
-            putNewPiece(new King(chess, Color.White), 'd', 1);
-            putNewPiece(new Tower(chess, Color.White), 'f', 1);
-            
+            putNewPiece(new Pawn(chess, Color.White), 'a', 2);
+            putNewPiece(new Pawn(chess, Color.White), 'b', 2);
+            putNewPiece(new Pawn(chess, Color.White), 'c', 2);
+            putNewPiece(new Pawn(chess, Color.White), 'd', 2);
+            putNewPiece(new Pawn(chess, Color.White), 'e', 2);
+            putNewPiece(new Pawn(chess, Color.White), 'f', 2);
+            putNewPiece(new Pawn(chess, Color.White), 'g', 2);
+            putNewPiece(new Pawn(chess, Color.White), 'h', 2);
+
+
             putNewPiece(new Tower(chess, Color.Black), 'a', 8);
+            putNewPiece(new Knight(chess, Color.Black), 'b', 8);
+            putNewPiece(new Bishop(chess, Color.Black), 'c', 8);
+            putNewPiece(new Queen(chess, Color.Black), 'd', 8);
+            putNewPiece(new King(chess, Color.Black), 'e', 8);
+            putNewPiece(new Bishop(chess, Color.Black), 'f', 8);
+            putNewPiece(new Knight(chess, Color.Black), 'g', 8);
             putNewPiece(new Tower(chess, Color.Black), 'h', 8);
-            putNewPiece(new Tower(chess, Color.Black), 'e', 7);
-            putNewPiece(new King(chess, Color.Black), 'd', 8);
+            putNewPiece(new Pawn(chess, Color.Black), 'a', 7);
+            putNewPiece(new Pawn(chess, Color.Black), 'b', 7);
+            putNewPiece(new Pawn(chess, Color.Black), 'c', 7);
+            putNewPiece(new Pawn(chess, Color.Black), 'd', 7);
+            putNewPiece(new Pawn(chess, Color.Black), 'e', 7);
+            putNewPiece(new Pawn(chess, Color.Black), 'f', 7);
+            putNewPiece(new Pawn(chess, Color.Black), 'g', 7);
+            putNewPiece(new Pawn(chess, Color.Black), 'h', 7);
+
         }
     }
 }
